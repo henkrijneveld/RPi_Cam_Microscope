@@ -1,3 +1,12 @@
+This repository is based on the RPi_Cam_Web_Interface.
+
+Modifications are made to use the 12MP HQ Cam on a 0.5X CMount lens.
+The webinterface is/will be optimized for use of this camera in this way.
+
+========================
+
+**The original Readme:**
+
 Web based interface for controlling the Raspberry Pi Camera, includes motion detection, time lapse, and image and video recording.
 Current version 6.6.11
 All information on this project can be found here: http://www.raspberrypi.org/forums/viewtopic.php?f=43&t=63276
