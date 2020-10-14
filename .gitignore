@@ -9,6 +9,9 @@ install.txt
 start.txt
 update.txt
 
+# created html directory
+www/html
+
 # website config
 etc/nginx/sites-available/default
 

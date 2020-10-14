@@ -3,6 +3,43 @@ This repository is based on the RPi_Cam_Web_Interface.
 Modifications are made to use the 12MP HQ Cam on a 0.5X CMount lens.
 The webinterface is/will be optimized for use of this camera in this way.
 
+**Installation with PHP Storm**
+
+It is based on development on a development Linux system, and the PI with the cam connected.
+
+1) Make the PI fixed on an IP (dhcp in router). Give it a symbolic name in the hosts file
+2) Clone this repo on development PC: git clone ssh://git@github.com/henkrijneveld/RPi_Cam_Microscope RPi_Cam_Microscope
+3) Make ssh available on PI
+4) Add a host add tools -> deployment -> configuration. Use SFTP and add an ssh configuration
+5) Upload everything from development system to PI
+6) chmod +x the shell scripts
+7) On **RASPBERRY**, run ./install.sh. I Prefer autostart on no
+8) It must be visible on http://<ip raspberry>/html
+9) Create second remote host Cam_Raspberry_html to /var/www/html. Map this to www on the development system
+10) In /var/www on raspberry do: "sudo chmod g+w -R html"
+11) Make this second remote host the default
+12) Make sure the user you use in SSH is member of the group www-data (sudo usermod -a -G www-data pi, followed by sudo shutdown -r now)
+13) tip: you can go to the pi with tools->Start ssh session...
+14) To correct problem: https://intellij-support.jetbrains.com/hc/en-us/community/posts/207036445-Auto-upload-Failed-to-change-timestamp-of-the-file
+chown the owner of the files from www-data to pi. In /var/www : sudo chown -R pi html
+15) Install xdebug on PI with: https://xdebug.org/wizard
+16) enable in the correct php.ini:
+    [xdebug]
+    
+    remote_port=9000
+    
+    remote_host=\<ip of development machine\>
+    
+    remote_enable=on
+    
+17) Enable ports in ufw (including 9000)
+18) For remote debugging, install xdebug helper on firefox. Follow the steps outlined in PHP Storm including the validator 
+(this is not necessary when the remote system runs in docker on the same machine)
+
+
+**Do not forget to go to ~/RPi_Cam_Microscope on the raspberry, and execute ./start.sh after booting**
+
+
 ========================
 
 **The original Readme:**
