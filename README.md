@@ -3,9 +3,24 @@ This repository is based on the RPi_Cam_Web_Interface.
 Modifications are made to use the 12MP HQ Cam on a 0.5X CMount lens.
 The webinterface is/will be optimized for use of this camera in this way.
 
+**Running the software**
+
+1) Start the webserver on the PI. Login with vnc or ssh, go to ~/RPi_Cam_Microscope on the raspberry, and execute ./start.sh
+
+2) Open webbrowser on client machine / PC and go to the raspberry IP or URL in /html
+
+3) For debugging:
+    - Activate the debug helper in firefox if it is not.
+    - Click the little grey bug in the url bar of firefox. 
+    - Select "Debug"
+    - Bug will turn green.
+    - Go to the URL to debug and start debugging
+    
+
+
 **Installation with PHP Storm**
 
-It is based on development on a development Linux system, and the PI with the cam connected.
+It is based on development on a Linux system, and the PI with the cam connected.
 
 1) Make the PI fixed on an IP (dhcp in router). Give it a symbolic name in the hosts file
 2) Clone this repo on development PC: git clone ssh://git@github.com/henkrijneveld/RPi_Cam_Microscope RPi_Cam_Microscope
@@ -32,10 +47,9 @@ chown the owner of the files from www-data to pi. In /var/www : sudo chown -R pi
     
     remote_enable=on
     
-17) Enable ports in ufw (including 9000)
+17) Enable ports in ufw on raspberry (including 9000)
 18) For remote debugging, install xdebug helper on firefox. Follow the steps outlined in PHP Storm including the validator 
-(this is not necessary when the remote system runs in docker on the same machine)
-
+(this is not necessary when the remote system runs in docker on the same machine as PHPStorm)
 
 **Do not forget to go to ~/RPi_Cam_Microscope on the raspberry, and execute ./start.sh after booting**
 
