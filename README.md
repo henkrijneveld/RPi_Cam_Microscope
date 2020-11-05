@@ -53,6 +53,14 @@ chown the owner of the files from www-data to pi. In /var/www : sudo chown -R pi
 
 **Do not forget to go to ~/RPi_Cam_Microscope on the raspberry, and execute ./start.sh after booting**
 
+========================
+**Additional Docs**
+
+Most recent raspimjpeg source:
+
+https://github.com/roberttidey/userland/tree/master/host_applications/linux/apps/raspicam
+
+
 
 ========================
 
