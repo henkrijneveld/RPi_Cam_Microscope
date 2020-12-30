@@ -36,7 +36,7 @@ It is based on development on a Linux system, and the PI with the cam connected.
 12) Make sure the user you use in SSH is member of the group www-data (sudo usermod -a -G www-data pi, followed by sudo shutdown -r now)
 13) tip: you can go to the pi with tools->Start ssh session...
 14) To correct problem: https://intellij-support.jetbrains.com/hc/en-us/community/posts/207036445-Auto-upload-Failed-to-change-timestamp-of-the-file
-chown the owner of the files from www-data to pi. In /var/www : sudo chown -R pi html
+chown the owner of the files from www-data to pi. In /var : sudo chown -R pi www
 15) Install xdebug on PI with: https://xdebug.org/wizard
 16) enable in the correct php.ini:
     [xdebug]
@@ -50,6 +50,7 @@ chown the owner of the files from www-data to pi. In /var/www : sudo chown -R pi
 17) Enable ports in ufw on raspberry (including 9000)
 18) For remote debugging, install xdebug helper on firefox. Follow the steps outlined in PHP Storm including the validator 
 (this is not necessary when the remote system runs in docker on the same machine as PHPStorm)
+19) The contents for /var/www are in wwwroot. This way we keep maximum compatibility with the original RPi_Cam software
 
 **Do not forget to go to ~/RPi_Cam_Microscope on the raspberry, and execute ./start.sh after booting**
 
