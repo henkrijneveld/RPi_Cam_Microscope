@@ -25,11 +25,11 @@ It is based on development on a Linux system, and the PI with the cam connected.
 1) Make the PI fixed on an IP (dhcp in router). Give it a symbolic name in the hosts file
 2) Clone this repo on development PC: git clone ssh://git@github.com/henkrijneveld/RPi_Cam_Microscope RPi_Cam_Microscope
 3) Make ssh available on PI
-4) Add a host add tools -> deployment -> configuration. Use SFTP and add an ssh configuration
+4) Add a host add tools -> deployment -> configuration. Use SFTP and add an ssh configuration. Make the rootpath on PI to RPi_Cam2. Mappings from development directory to . on Pi. Create the destination directory on the Pi.
 5) Upload everything from development system to PI
 6) chmod +x the shell scripts
 7) On **RASPBERRY**, run ./install.sh. I Prefer autostart on no
-8) It must be visible on http://<ip raspberry>/html
+8) It must be visible on http://\<ip raspberry>/html
 9) Create second remote host Cam_Raspberry_html to /var/www/html. Map this to www on the development system
 10) In /var/www on raspberry do: "sudo chmod g+w -R html"
 11) Make this second remote host the default
