@@ -55,13 +55,23 @@ chown the owner of the files from www-data to pi. In /var : sudo chown -R pi www
 **Do not forget to go to ~/RPi_Cam_Microscope on the raspberry, and execute ./start.sh after booting**
 
 ========================
+
 **Additional Docs**
 
 Most recent raspimjpeg source:
 
 https://github.com/roberttidey/userland/tree/master/host_applications/linux/apps/raspicam
 
+========================
 
+**Some observations and other**
+
+Network speed: measured with iperf, using pi as server. Do not forget opening port 5001 on pi (sudo ufw allow 5001). Ip address PI will be different for wlan then for eth (!)
+
+Test with pi 3B+: eth up/download 94 Mbit/s; wlan up/download 39 Mbit/s. Seems in line with observation: eth is around 2x faster for transfer of large images then wlan.
+
+---
+www/poc can be run in testenvironment without pi, by using the included docker-compose. Just open terminal in www/poc, and run ./start.sh. Open localhost/microscopevue.php in browser. Don't forget to enable the mock api's in the source ;)
 
 ========================
 
