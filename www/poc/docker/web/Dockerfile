@@ -53,6 +53,8 @@ RUN a2enmod rewrite \
 
 RUN a2enmod cgid
 
+RUN apt-get -y install fswebcam
+
 # htaccess security
 ARG adminid
 ARG adminpw

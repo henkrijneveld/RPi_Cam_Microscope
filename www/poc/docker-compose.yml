@@ -21,6 +21,8 @@ services:
     ports:
     - "80:80"
     - "443:443"
+    devices:
+    - "/dev/video0:/dev/video0"
     volumes:
     - .:/var/www/html
     environment:
