@@ -6,15 +6,16 @@
 // usermod -a -G groupname username
 // memory mount
 // https://www.jamescoyle.net/how-to/943-create-a-ram-disk-in-linux
+// check ramfs with df -a
 
-// exec('/usr/bin/fswebcam -r 1280x720 --timestamp "%Y-%m-%d %H:%M:%S" /var/www/html/api/picture/image.jpg');
 
 // probleem: rechten in tmp
-exec('/usr/bin/fswebcam -r 1280x720 --timestamp "%Y-%m-%d %H:%M:%S" /tmp/webcam/image.jpg');
+exec('/usr/bin/fswebcam -r 1280x720 --no-banner /tmp/webcam/image1280.jpg');
+// exec('/usr/bin/fswebcam -l 1 -b -r 320x240 --no-banner /tmp/webcam/image320.jpg');
+// exec('/usr/bin/fswebcam -r 320x240 --no-banner /tmp/webcam/image320.jpg');
 
 
-//$image = file_get_contents('/var/www/html/api/picture/image.jpg');
-$image = file_get_contents('/tmp/webcam/image.jpg');
+$image = file_get_contents('/tmp/webcam/image1280.jpg');
 
 header('content-type: image/jpeg');
 echo $image;

@@ -53,16 +53,14 @@ RUN a2enmod rewrite \
 
 RUN a2enmod cgid
 
-RUN apt-get -y install fswebcam
-
 # htaccess security
-ARG adminid
-ARG adminpw
-ARG userid
-ARG userpw
-RUN htpasswd -bc /etc/apache2/.htpasswd $adminid $adminpw \
-    && htpasswd -b /etc/apache2/.htpasswd $userid $userpw \
-    && sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.conf
+#ARG adminid
+#ARG adminpw
+#ARG userid
+#ARG userpw
+#RUN htpasswd -bc /etc/apache2/.htpasswd $adminid $adminpw \
+#    && htpasswd -b /etc/apache2/.htpasswd $userid $userpw \
+#    && sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.conf
 
 # dedicated changes to php.ini
 RUN echo upload_max_filesize = 32M >> /usr/local/etc/php/php.ini
@@ -82,9 +80,15 @@ ARG loglevel
 RUN echo TimeOut 600 >> /etc/apache2/apache2.conf \
     && echo LogLevel $loglevel >> /etc/apache2/apache2.conf
 
+# webcam setuo
+RUN apt-get -y install fswebcam
+RUN usermod -a -G video www-data ## access to video device
+
+
 # Change www-data user to match the host system UID and GID and chown www directory
 ARG uiduser
 ARG giduser
 RUN usermod --non-unique --uid $uiduser www-data \
   && groupmod --non-unique --gid $giduser www-data \
   && chown -R www-data:www-data /var/www
+

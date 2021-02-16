@@ -19,6 +19,8 @@ services:
         loglevel: trace8 # debug, trace8, crit
         uiduser: 1000
         giduser: 1000
+    tmpfs:
+    - /tmp/webcam
     ports:
     - "80:80"
     - "443:443"
