@@ -17,3 +17,4 @@ etc/nginx/sites-available/default
 
 # settings
 etc/raspimjpeg/raspimjpeg
+/www/poc/data/
