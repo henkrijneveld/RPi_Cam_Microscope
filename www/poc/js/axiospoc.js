@@ -1,13 +1,16 @@
 Vue.component("axios-poc", {
   data: function() {
     return {
-        info: null
+        info: null,
+        loaded: false
     }
   },
   mounted () {
     axios
         .get('https://api.coindesk.com/v1/bpi/currentprice.json')
-        .then(response => (this.info = response.data.bpi))
+        .then(response => {this.info = response.data.bpi; this.loaded = true})
+        .catch(error => {console.log(error); this.loaded = false;})
+        .finally(() => {})
   },
   filters: {
     currencydecimal (value) {
@@ -18,14 +21,15 @@ Vue.component("axios-poc", {
 
   },
   template: `
-<div id="contents">
+<div v-if="loaded" id="contents">
+Hello
 <div
-v-for="Currency in info"
+v-for="currency in info"
 class="currency"
 >
 {{currency.description}}:
 <span class="lighten">
-<span v-html="currenct.symbol"></span>{{ currency.rate_float }} <!-- | currencydecimal }} -->
+<span v-html="currency.symbol"></span>{{ currency.rate_float | currencydecimal }} 
 </span>
 </div>
 </div>
