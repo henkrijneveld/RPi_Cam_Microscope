@@ -2,7 +2,9 @@ Vue.component("axios-poc", {
   data: function() {
     return {
         info: null,
-        loaded: false
+        loaded: false,
+        webcampic: "",
+        timer: null
     }
   },
   mounted () {
@@ -10,14 +12,35 @@ Vue.component("axios-poc", {
         .get('https://api.coindesk.com/v1/bpi/currentprice.json')
         .then(response => {this.info = response.data.bpi; this.loaded = true})
         .catch(error => {console.log(error); this.loaded = false;})
-        .finally(() => {})
+        .finally(() => {});
   },
+  created() {
+    this.interval = setInterval(() => this.loadpic(), 500./stop());
+  }
+  ,
   filters: {
     currencydecimal (value) {
       return value.toFixed(2)
     }
   },
+  beforeDestroy() {
+    clearInterval(this.timer)
+  },
   methods: {
+    loadpic: function() {
+      axios
+          .get('http://localhost/api/picture/showpic.php', { responseType: 'arraybuffer'})
+          .then(response => {
+            const base64 = btoa(
+                new Uint8Array(response.data).reduce(
+                    (data, byte) => data + String.fromCharCode(byte),
+                    '',
+                ),
+            );
+            this.webcampic = "data:;base64," + base64;
+          })
+          .catch(error => {console.log(error);})
+    }
 
   },
   template: `
@@ -31,6 +54,9 @@ class="currency"
 <span class="lighten">
 <span v-html="currency.symbol"></span>{{ currency.rate_float | currencydecimal }} 
 </span>
+</div>
+<div>
+<img width="400px" :src="webcampic" />
 </div>
 </div>
 `

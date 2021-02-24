@@ -83,7 +83,8 @@ RUN echo TimeOut 600 >> /etc/apache2/apache2.conf \
 # webcam setuo
 RUN apt-get -y install fswebcam
 RUN usermod -a -G video www-data ## access to video device
-
+RUN mkdir -p /tmp/webcam
+RUN chmod a+w /tmp/webcam
 
 # Change www-data user to match the host system UID and GID and chown www directory
 ARG uiduser

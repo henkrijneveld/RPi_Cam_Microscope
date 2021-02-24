@@ -9,6 +9,3 @@ use api\picture\WebcamProvider as Provider;
 $provider = new Provider;
 
 $provider->getImage();
-
-
-
