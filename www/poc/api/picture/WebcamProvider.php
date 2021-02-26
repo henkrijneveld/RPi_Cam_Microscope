@@ -8,7 +8,7 @@ class WebcamProvider extends Provider
     function getImage()
     {
 
-        exec('/usr/bin/fswebcam -r 1280x720 --no-banner /tmp/webcam/image1280.jpg');
+        exec('/usr/bin/fswebcam --set brightness=70% --set contrast=10% --set saturation=50% -r 1280x720 --no-banner /tmp/webcam/image1280.jpg');
         // exec('/usr/bin/fswebcam -l 1 -b -r 320x240 --no-banner /tmp/webcam/image320.jpg');
         // exec('/usr/bin/fswebcam -r 320x240 --no-banner /tmp/webcam/image320.jpg');
 

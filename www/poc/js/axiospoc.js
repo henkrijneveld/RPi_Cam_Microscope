@@ -15,7 +15,7 @@ Vue.component("axios-poc", {
         .finally(() => {});
   },
   created() {
-    this.interval = setInterval(() => this.loadpic(), 500./stop());
+    this.interval = setInterval(() => this.loadpic(), 500);
   }
   ,
   filters: {
