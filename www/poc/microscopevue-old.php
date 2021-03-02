@@ -9,7 +9,7 @@
 </head>
 <body>
   <div id="camerapicture">
-    <zoomable-image :vwidth="500">Raspicam 12 MB</zoomable-image>
+    <zoomable-image :vwidth="500" :imgsrc="'api/picture/showpic.php'">Raspicam 12 MB</zoomable-image>
   </div>
   <div id="filename">
     <file-name>Filename and configuration</file-name>

@@ -12,8 +12,14 @@ Vue.component("zoomable-image", {
       multiplier: 0,
       centerh: 0,
       centerw: 0,
-      isLoaded: false
+
+      pict: "",
+      isLoaded: false,
+      timer: null
     }
+  },
+  beforeDestroy() {
+    clearInterval(this.timer)
   },
   computed: {
     zoomperc() {
@@ -21,26 +27,42 @@ Vue.component("zoomable-image", {
     }
   },
   props: {
-    imgsrc: String,
     vwidth: Number
   },
   created: function () {
     this.vheight = this.vwidth;
+    this.interval = setInterval(() => this.loadpic(), 500);
   },
   methods: {
+    loadpic: function() {
+      axios
+          .get('http://localhost/api/picture/showpic.php', { responseType: 'arraybuffer'})
+          .then(response => {
+            const base64 = btoa(
+                new Uint8Array(response.data).reduce(
+                    (data, byte) => data + String.fromCharCode(byte),
+                    '',
+                ),
+            );
+            this.pict = "data:;base64," + base64;
+          })
+          .catch(error => {console.log(error);})
+    },
     center: function () {
       this.centerh = this.iheight / 2;
       this.centerw = this.iwidth / 2;
       this.setupsizes(this.multiplier);
     },
     init: function(event) {
-      this.iheight = event.currentTarget.naturalHeight;
-      this.iwidth = event.currentTarget.naturalWidth;
-      this.vheight = this.vwidth * this.iheight / this.iwidth;
-      this.centerh = this.iheight / 2;
-      this.centerw = this.iwidth / 2;
-      this.setupsizes(this.vheight / this.iheight);
-      this.isLoaded = true;
+      if (!this.isLoaded) {
+        this.iheight = event.currentTarget.naturalHeight;
+        this.iwidth = event.currentTarget.naturalWidth;
+        this.vheight = this.vwidth * this.iheight / this.iwidth;
+        this.centerh = this.iheight / 2;
+        this.centerw = this.iwidth / 2;
+        this.setupsizes(this.vheight / this.iheight);
+        this.isLoaded = true;
+      }
     },
     dofit: function () {
       this.setupsizes(this.vheight / this.iheight);
@@ -84,7 +106,7 @@ Vue.component("zoomable-image", {
   <b><slot></slot></b>
   <div :style="[isLoaded ? {'display': 'block'} : {'display': 'none'}]">
     <div class="zi-camimg" id="zi-camdiv" :style="{width: vwidth + 'px', height: vheight + 'px'}">
-      <img v-on:load="init" v-bind:style="{top: top + 'px', left: left + 'px'}"  v-on:mousemove.prevent="mousemove" v-on:mousedown.prevent="mousedown" v-on:mouseup.prevent="mouseup" id="zi-campic" :src="imgsrc" v-bind:height="height" />
+      <img v-on:load="init" v-bind:style="{top: top + 'px', left: left + 'px'}"  v-on:mousemove.prevent="mousemove" v-on:mousedown.prevent="mousedown" v-on:mouseup.prevent="mouseup" id="zi-campic" :src="pict" v-bind:height="height" />
     </div>
     <div class="zi-buttons">
       <button v-on:click="center">Center</button>
