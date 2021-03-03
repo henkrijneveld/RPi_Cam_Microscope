@@ -12,7 +12,7 @@
     <zoomable-image :vwidth="500">Raspicam 12 MB</zoomable-image>
   </div>
   <div id="filename">
-    <file-name>Filename and configuration</file-name>
+    <file-name>Filename</file-name>
   </div>
   <script type="text/javascript" src="js/filename.js"></script>
   <script type="text/javascript" src="js/zoomableimage.js"></script>
