@@ -1,28 +1,31 @@
 Vue.component("button-bar", {
   data: function() {
     return {
-      selected: 'no value',
+      selected: this.buttons[0]
     }
   },
   props: {
-    buttons: Array
+    buttons: {
+      type: Array,
+      required: true
+    }
   },
   computed: {
 
   },
   methods: {
-    buttonselected: function (buttonname) {
-      if (buttonname !== "None") {
-        this.selected = buttonname;
-      } else {
-        this.selected = "";
-      }
-    }
+
   },
   template: `
 <div>
   <slot></slot>: 
-  <input v-bind:style="btn == selected ? 'color: red;' : 'color: inherit;'" type="button" v-for="btn in buttons" v-bind:value="btn" v-on:click="buttonselected(btn)"/>
+  <input    style="margin-right: 10px;" 
+            type="button" 
+            v-for="btn in buttons"
+            v-bind:key="btn"
+            v-bind:value="btn"
+            v-bind:style="btn === selected ? 'color: red;' : 'color: inherit;'"
+            v-on:click="selected = btn"/>
   <br/>
   <p>{{ selected }}</p>
 </div>
