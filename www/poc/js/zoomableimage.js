@@ -103,7 +103,7 @@ Vue.component("zoomable-image", {
   },
   template: `
 <div id="zi-picture">
-  <b><slot></slot></b>
+  <h3><slot></slot></h3>
   <div :style="[isLoaded ? {'display': 'block'} : {'display': 'none'}]">
     <div class="zi-camimg" id="zi-camdiv" :style="{width: vwidth + 'px', height: vheight + 'px'}">
       <img v-on:load="init" v-bind:style="{top: top + 'px', left: left + 'px'}"  v-on:mousemove.prevent="mousemove" v-on:mousedown.prevent="mousedown" v-on:mouseup.prevent="mouseup" id="zi-campic" :src="pict" v-bind:height="height" />

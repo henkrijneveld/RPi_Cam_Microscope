@@ -1,4 +1,7 @@
-var zoomableimage = new Vue( {el: '#camerapicture' });
-var filename = new Vue( {el: '#filename' });
-
+var vm = new Vue({
+    el: '#microscopeapp',
+    data: {
+        fname: 'testname'
+    }
+})
 

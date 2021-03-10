@@ -1,15 +1,2 @@
-.zi-camimg {
-  margin-bottom: 15px;
-  overflow: hidden;
-  background-color: #ccc; }
-
-#zi-camdiv {
-  position: relative; }
-
-#zi-campic {
-  position: relative; }
-
-.zi-buttons {
-  margin-bottom: 15px; }
-
+.zi-camimg{margin-bottom:15px;overflow:hidden;background-color:#ccc}#zi-camdiv{position:relative}#zi-campic{position:relative}.zi-buttons{margin-bottom:15px}input{margin-bottom:10px}.buttonbar input{margin-top:5px}.buttonbar .buttonbar-title{font-size:smaller}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"}
 /*# sourceMappingURL=style.css.map */
