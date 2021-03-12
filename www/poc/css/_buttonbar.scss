@@ -1,6 +1,9 @@
 .buttonbar {
   input {
-    margin-top: 5px;
+    font-size: 16px;
+  }
+  input:hover {
+    cursor: pointer;
   }
   .buttonbar-title {
     font-size: smaller;

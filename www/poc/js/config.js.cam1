@@ -1,7 +1,7 @@
 // configuration
 Vue.prototype.$cfg = {
     // general settings
-    hostname: "", // if the endpoints are on a different url. @TODO: CORS settings must be implemented
+    hostname: "http://cam1",
     // picture settings
     magn: ['0','1','2','3','4'],
     magnfraction: ['0','1','2','3','4','5','6','7','8','9'],
@@ -10,7 +10,7 @@ Vue.prototype.$cfg = {
     polarizer: ['','Pol', 'An', 'Pol+An'],
     immersion: ['','Water', 'Oil', 'Immersed'],
     // api endpoints
-    streamEndpoint: "/api/picture/streampic.php",
-    shotEndpoint: "/api/picture/shotpic.php"
+    streamEndpoint: "/html/poc/api/picture/streampic.php",
+    shotEndpoint: "/html/poc/api/picture/shotpic.php"
 }
 

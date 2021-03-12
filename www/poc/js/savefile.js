@@ -1,20 +1,13 @@
-Vue.component("save-file", {
+Vue.component("configuration-pane", {
     data: function() {
         return {
         }
     },
-    props: {
-        filename: {
-            type: String,
-            required: true
-        }
-    },
     methods: {
-./stop      },
+    },
     template: `
-<div class="savefile">
-<h3><slot></slot></h3>
-save the file: {{filename}}
+<div class="cf-settings">
+<h3 v-if="$slots.default"><slot></slot></h3>
 </div>
 `
 })

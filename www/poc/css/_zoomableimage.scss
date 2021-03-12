@@ -1,17 +1,25 @@
-.zi-camimg {
-  margin-bottom: 15px;
-  overflow: hidden;
-  background-color: #ccc;
-}
+#zi-picture {
+  .zi-camimg {
+    margin-bottom: 15px;
+    overflow: hidden;
+    background-color: #ccc;
+  }
 
-#zi-camdiv {
-  position: relative;
-}
+  #zi-camdiv {
+    position: relative;
+  }
 
-#zi-campic {
-  position: relative;
-}
+  #zi-campic {
+    position: relative;
+  }
 
-.zi-buttons {
-  margin-bottom: 15px;
+  .zi-buttons {
+    margin-bottom: 15px;
+  }
+  button {
+    font-size: 16px;
+  }
+  button:hover {
+    cursor: pointer;
+  }
 }

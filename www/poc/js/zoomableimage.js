@@ -2,6 +2,7 @@ Vue.component("zoomable-image", {
   data: function() {
     return {
       vheight: 0,
+      vwidth: 500,
       iheight: 3040,
       iwidth: 4056,
       height: 450,
@@ -27,16 +28,22 @@ Vue.component("zoomable-image", {
     }
   },
   props: {
-    vwidth: Number
+    maxwidth: Number
+  },
+  watch: {
+    maxwidth: function (newwidth, oldwith) {
+      this.isLoaded = false;
+      this.vwidth = newwidth;
+    }
   },
   created: function () {
     this.vheight = this.vwidth;
-    this.interval = setInterval(() => this.loadpic(), 500);
+    this.timer = setInterval(() => this.loadpic(), 750);
   },
   methods: {
     loadpic: function() {
       axios
-          .get('http://localhost/api/picture/showpic.php', { responseType: 'arraybuffer'})
+          .get(this.$cfg.hostname + this.$cfg.streamEndpoint, { responseType: 'arraybuffer'})
           .then(response => {
             const base64 = btoa(
                 new Uint8Array(response.data).reduce(
@@ -55,9 +62,18 @@ Vue.component("zoomable-image", {
     },
     init: function(event) {
       if (!this.isLoaded) {
+        let windowHeight = window.innerHeight;
+        let windowWidth = window.innerWidth;
+        let maxHeight = window.innerHeight - 140;
+
+        this.vwidth = this.maxwidth;
         this.iheight = event.currentTarget.naturalHeight;
         this.iwidth = event.currentTarget.naturalWidth;
         this.vheight = this.vwidth * this.iheight / this.iwidth;
+        if (maxHeight > 100 && this.vheight > maxHeight) {
+          this.vheight = maxHeight;
+          this.vwidth = this.iwidth * this.vheight / this.iheight;
+        }
         this.centerh = this.iheight / 2;
         this.centerw = this.iwidth / 2;
         this.setupsizes(this.vheight / this.iheight);
@@ -103,10 +119,18 @@ Vue.component("zoomable-image", {
   },
   template: `
 <div id="zi-picture">
-  <h3><slot></slot></h3>
+  <h3 v-if="$slots.default"><slot></slot></h3>
   <div :style="[isLoaded ? {'display': 'block'} : {'display': 'none'}]">
     <div class="zi-camimg" id="zi-camdiv" :style="{width: vwidth + 'px', height: vheight + 'px'}">
-      <img v-on:load="init" v-bind:style="{top: top + 'px', left: left + 'px'}"  v-on:mousemove.prevent="mousemove" v-on:mousedown.prevent="mousedown" v-on:mouseup.prevent="mouseup" id="zi-campic" :src="pict" v-bind:height="height" />
+      <img  v-on:load="init"
+            v-bind:style="{top: top + 'px', left: left + 'px'}"  
+            v-on:mousemove.prevent="mousemove" 
+            v-on:mousedown.prevent="mousedown" 
+            v-on:mouseup.prevent="mouseup" 
+            id="zi-campic" 
+            :src="pict" 
+            v-bind:height="height" 
+    />
     </div>
     <div class="zi-buttons">
       <button v-on:click="center">Center</button>

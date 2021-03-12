@@ -22,7 +22,7 @@ Vue.component("file-name", {
       if (this.immersion) filename += this.immersion + "-";
       if (this.extra) filename += this.extra + "-";
       fd = new Date();
-      filename += filedate = fd.getFullYear().toString().slice(-2)+("0"+(fd.getMonth()+1)).slice(-2)+("0"+(fd.getDay())).slice(-2)+"-"+("0"+fd.getHours()).slice(-2)+":"+("0"+fd.getMinutes()).slice(-2)+":"+("0"+fd.getSeconds()).slice(-2);
+      filename += filedate = fd.getFullYear().toString().slice(-2)+("0"+(fd.getMonth()+1)).slice(-2)+("0"+(fd.getDate())).slice(-2)+"-"+("0"+fd.getHours()).slice(-2)+("0"+fd.getMinutes()).slice(-2)+("0"+fd.getSeconds()).slice(-2);
 //      this.$emit("setfname", filename);
       return (filename + ".jpg");
     }
@@ -38,7 +38,7 @@ Vue.component("file-name", {
   },
   template: `
 <div id="fn-settings">
-  <h3><slot></slot></h3>
+  <h3 v-if="$slots.default"><slot></slot></h3>
   <input v-model="name" placeholder="description"><br>
   <input v-model="extra" placeholder="extra text">
   <button-bar v-bind:selected.sync="magn" v-bind:buttons="$cfg.magn">Magnification</button-bar>

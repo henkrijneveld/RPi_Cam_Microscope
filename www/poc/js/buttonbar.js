@@ -22,7 +22,7 @@ Vue.component("button-bar", {
   template: `
 <div class="buttonbar">
   <span class="buttonbar-title"><slot></slot></span><br> 
-  <input    style="margin-right: 10px;" 
+  <input    style="margin-right: 5px;" 
             type="button" 
             v-for="btn in buttons"
             v-bind:key="btn"

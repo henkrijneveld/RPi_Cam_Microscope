@@ -50,7 +50,8 @@ chown the owner of the files from www-data to pi. In /var : sudo chown -R pi www
 17) Enable ports in ufw on raspberry (including 9000)
 18) For remote debugging, install xdebug helper on firefox. Follow the steps outlined in PHP Storm including the validator 
 (this is not necessary when the remote system runs in docker on the same machine as PHPStorm)
-19) The contents for /var/www are in wwwroot. This way we keep maximum compatibility with the original RPi_Cam software
+19) In PHPStorm Setting->Language&Frameworks->PHP->Debug uncheck "ignore externale connections through unregistered server configurations" (or register the server configuration :))     
+20) The contents for /var/www are in wwwroot. This way we keep maximum compatibility with the original RPi_Cam software
 
 **Do not forget to go to ~/RPi_Cam_Microscope on the raspberry, and execute ./start.sh after booting**
 
@@ -72,6 +73,13 @@ Test with pi 3B+: eth up/download 94 Mbit/s; wlan up/download 39 Mbit/s. Seems i
 
 ---
 www/poc can be run in testenvironment without pi, by using the included docker-compose. Just open terminal in www/poc, and run ./start.sh. Open localhost/microscopevue.php in browser. Don't forget to enable the mock api's in the source ;)
+
+========================
+
+**CAVEAT**
+
+There seem to be a buggie thing in raspimjpeg and / or the software. When changing the buffer from anything else then the default raspimjpeg will crash. If this is changed, you have to remove the offending line in uconfig.
+
 
 ========================
 
