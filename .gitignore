@@ -1,6 +1,7 @@
 .*.swp      # Vim Files
 *~          # backup files
 .idea
+.sass-cache
 
 # Generated text files
 install.txt
